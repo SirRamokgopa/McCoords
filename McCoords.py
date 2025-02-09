@@ -1,3 +1,4 @@
+import OS
 import discord
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
@@ -5,13 +6,16 @@ import re
 import datetime
 
 # Discord bot token
-TOKEN = "token"
+TOKEN = os.getenv("TOKEN")
 
 # Google Sheets setup
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-creds = ServiceAccountCredentials.from_json_keyfile_name("GcpKeys.json", scope)
-client = gspread.authorize(creds)
-sheet = client.open("McCoords").sheet1
+# Load the credentials from the environment variable (as a JSON string)
+import json
+creds_data = json.loads(os.getenv("GCP_JSON"))
+creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_data, scope)
+gs_client = gspread.authorize(creds)
+sheet = gs_client.open("McCoords").sheet1
 
 # Regex pattern to extract place and coordinates
 COORD_PATTERN = re.compile(r"^(.*?) \((-?\d+), (-?\d+)(?:, (-?\d+))?\)$", re.IGNORECASE)
