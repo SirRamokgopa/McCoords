@@ -55,8 +55,8 @@ async def on_message(message):
         sheet.append_row([place_name, x, z, y, timestamp])
         await message.channel.send(f"Got you, fam. 😎\n{place_name} at ({x}, {z}, {y})")
 
-    # Handle "gimmie" command
-    if content.lower().startswith("gimmie "):
+    # Handle "gib" command
+    if content.lower().startswith("gib "):
         place_name = content[7:].strip().lower()
         records = sheet.get_all_records()
         matches = [r for r in records if r['Place'].lower() == place_name]
@@ -73,7 +73,7 @@ async def on_message(message):
         help_message = (
             "📌 **How to Use CoordsGuy** 📌\n"
             "- Log a place: `Place Name (x, z, y)` or `Place Name (x, z)`\n"
-            "- Retrieve coordinates: `gimmie Place Name`\n"
+            "- Retrieve coordinates: `gib Place Name`\n"
             "- The bot is case-insensitive and stores multiple locations for the same name."
         )
         await message.channel.send(help_message)
