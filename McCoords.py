@@ -65,7 +65,7 @@ async def on_message(message):
             await message.channel.send("I don't know where that is, bro. ¯\\_(ツ)_/¯")
         else:
             coords_list = [f"({m['x']}, {m['z']}, {m['y']})" for m in matches]
-            response = f"{content[7:].strip()} can be found at " + " or ".join(coords_list)
+            response = f"{content[3:].strip()} can be found at " + " or ".join(coords_list)
             await message.channel.send(response)
 
     # Handle bot help command
