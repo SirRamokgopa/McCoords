@@ -56,7 +56,7 @@ async def on_message(message):
         await message.channel.send(f"Got you, fam. 😎\n{place_name} at ({x}, {z}, {y})")
 
     # Handle "gib" command
-    if content.lower().startswith("gib "):
+    if content.lower().startswith("gib"):
         place_name = content[7:].strip().lower()
         records = sheet.get_all_records()
         matches = [r for r in records if r['Place'].lower() == place_name]
