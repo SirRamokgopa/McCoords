@@ -57,7 +57,7 @@ async def on_message(message):
 
     # Handle "gib" command
     if content.lower().startswith("gib"):
-        place_name = content[7:].strip().lower()
+        place_name = content[3:].strip().lower()
         records = sheet.get_all_records()
         matches = [r for r in records if r['Place'].lower() == place_name]
         
